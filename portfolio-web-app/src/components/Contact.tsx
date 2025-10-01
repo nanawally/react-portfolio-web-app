@@ -2,29 +2,42 @@ import React, { useState } from "react";
 
 const Contact: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+const [formData, setFormData] = useState({
+  name: '',
+  email: '',
+  message: '',
+})
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({...prev, [name]: value}))
+  }
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    //submit logic
+    console.log('Form submitted:', formData)
+  }
+
   return (
     <>
       <header>
         <nav className="topnav">
-          <h1 className="active">Anna Wallström</h1>
+            <h1 className="active">Anna Wallström</h1>
 
-          <section
-            id="myLinks"
-            style={{ display: menuOpen ? "block" : "none" }}
-          >
-            <a href="index.html">Homepage</a>
-            <a href="about.html">About Me</a>
-            <a href="cv.html">My CV</a>
-            <a href="tech.html">Technical Competence</a>
-            <a href="contact.html">Contact Me</a>
-          </section>
+            <section id="myLinks">
+                <a href="index.html">Homepage</a>
+                <a href="about.html">About Me</a>
+                <a href="cv.html">My CV</a>
+                <a href="tech.html">Technical Competence</a>
+                <a href="contact.html">Contact Me</a>
+            </section>
 
-          <button
+           <button
             className="icon"
             onClick={toggleMenu}
             aria-label="Toggle Menu"
@@ -32,56 +45,51 @@ const Contact: React.FC = () => {
             <i className="fa fa-bars"></i>
           </button>
         </nav>
-      </header>
+    </header>
 
-      <main className="aboutmain">
-        <section className="content">
-          <article className="portrait">
-            <img
-              src="images/self-portrait/self-portrait.jpg"
-              srcSet="images/self-portrait/self-portrait-500.jpg 500w, images/self-portrait/self-portrait-768.jpg 768w"
-              sizes="(max-width: 500px) 500px, (max-width: 768px) 768px, 1200px"
-              alt="Portrait"
-            />
-          </article>
-          <article className="text-box">
-            <h2 style={{ fontFamily: "'Courier New', Courier, monospace" }}>
-              About me
-            </h2>
-            <p>
-              Hi, I'm Anna, a passionate Java developer with a strong foundation
-              in computer science. I recently graduated with a degree in Java
-              Fullstack, where I focused on honing my skills in software
-              development, problem-solving, and application design.
-              <br />
-              <br />
-              With a deep interest in programming, I've spent countless hours
-              mastering Java, along with exploring web and mobile development
-              technologies. I'm always eager to learn new tools and frameworks
-              to stay ahead of the curve and build innovative, scalable
-              solutions.
-              <br />
-              <br />
-              I approach every project with a combination of creativity,
-              precision, and a commitment to writing clean, maintainable code.
-              Whether working independently or as part of a team, I believe that
-              communication, collaboration, and continuous learning are the keys
-              to success.
-              <br />
-              <br />
-              When I'm not coding, you'll find me exploring new tech trends,
-              solving coding challenges, or working on personal projects to
-              sharpen my skills further.
-              <br />
-              <br />
-              I'm excited to take on new challenges and look forward to
-              contributing to exciting, impactful projects.
-            </p>
-          </article>
-        </section>
-      </main>
+    <main>
+        <div className="contact-main">
+            <section className="contact-links">
+                <h2>Links</h2>
+                <article>
+                    <a href="https://github.com/nanawally" target="_blank">Github home</a>
+                </article>
+                <article>
+                    <a href="https://github.com/nanawally/Adventure-Game" target="_blank">Adventure Game</a>
+                </article>
+                <article>
+                    <a href="https://github.com/nanawally/Home-Invasion-Game" target="_blank">Home Invasion Game</a>
+                </article>
+            </section>
+            <section className="contact-links">
+                <article>
+                    <a href="tel:+46222222">Call me</a>
+                </article>
+                <article>
+                    <a href="mailto:amj.wallstrom@gmail.com">Send me an email</a>
+                </article>
+            </section>
+            <section>
+                <h2 style={{fontFamily: "'Courier New', Courier, monospace" }}>Send a message</h2>
+                <form onSubmit={handleSubmit}>
+                    <label htmlFor="name">Name:</label>
+                    <input type="text" id="name" name="name" required value={formData.name} onChange={handleChange}/>
+                    <br/>
+                    <label htmlFor="email">Email:</label>
+                    <input type="email" id="email" name="email" required value={formData.email} onChange={handleChange}/>
+                    <br/>
+                    <label htmlFor="message">Message:</label>
+                    <textarea id="message" name="message" rows={4} cols={50} value={formData.message} onChange={handleChange}/>
+                    <br/>
+                    <input type="submit" value="Send"/>
+                </form>
+            </section>
+        </div>
+    </main>
 
-      <footer>Anna Wallström, 2025</footer>
+    <footer>
+        Anna Wallström, 2025
+    </footer>
     </>
   );
 };
