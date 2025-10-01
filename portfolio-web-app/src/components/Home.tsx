@@ -12,7 +12,7 @@ const Home: React.FC = () => {
     <>
       <header>
         <nav className="topnav">
-          <h1 className="active">Anna Wallström</h1>
+          <h1 className="active">Anna Wallström!</h1>
 
           <section id="myLinks">
             <Link to="index.html">Homepage</Link>
