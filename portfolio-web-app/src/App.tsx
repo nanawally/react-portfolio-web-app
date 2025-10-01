@@ -5,7 +5,6 @@ import About from './components/About';
 import Contact from './components/Contact';
 import Cv from './components/Cv';
 import Tech from './components/Tech';
-//import './App.css';
 
 const App: React.FC = () => {
   return (

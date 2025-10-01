@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import "./App.css";
-import "font-awesome/css/font-awesome.min.css";
 
 const About: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
