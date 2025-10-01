@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Tech: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -13,15 +14,12 @@ const Tech: React.FC = () => {
         <nav className="topnav">
           <h1 className="active">Anna Wallström</h1>
 
-          <section
-            id="myLinks"
-            style={{ display: menuOpen ? "block" : "none" }}
-          >
-            <a href="index.html">Homepage</a>
-            <a href="about.html">About Me</a>
-            <a href="cv.html">My CV</a>
-            <a href="tech.html">Technical Competence</a>
-            <a href="contact.html">Contact Me</a>
+          <section id="myLinks">
+            <Link to="index.html">Homepage</Link>
+            <Link to="about.html">About Me</Link>
+            <Link to="cv.html">My CV</Link>
+            <Link to="tech.html">Technical Competence</Link>
+            <Link to="contact.html">Contact Me</Link>
           </section>
 
           <button
